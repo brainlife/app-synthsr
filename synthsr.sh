@@ -9,4 +9,4 @@ ncores=4
 [ ! -f ${outdir}/${TYPE}.nii.gz ] && echo "running SynthSR" && \
 	mri_synthsr --i ${input} --o ${outdir}/${TYPE}.nii.gz
 
-#[ ! -f ${outdir}/${TYPE}.nii.gz ] && echo "something went wrong. check logs" && exit 1 || echo "complete" && exit 0
+[ ! -f ${outdir}/${TYPE}.nii.gz ] && echo "something went wrong. check logs" && exit 1 || echo "complete" && exit 0
