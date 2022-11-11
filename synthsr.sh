@@ -2,6 +2,7 @@
 
 t1=`jq -r '.t1' config.json`
 t2=`jq -r '.t2' config.json`
+TYPE=`jq -r '.type' config.json`
 ncores=4
 
 [ ! -d output ] && mkdir -p output && outdir="./output"
