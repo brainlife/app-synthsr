@@ -1,107 +1,171 @@
-[![Abcdspec-compliant](https://img.shields.io/badge/ABCD_Spec-v1.1-green.svg)](https://github.com/brain-life/abcd-spec)
-[![Run on Brainlife.io](https://img.shields.io/badge/Brainlife-brainlife.app.379-blue.svg)](https://doi.org/10.25663/brainlife.app.)
+<h1 align="center">SynthSR</h1>
 
-# app-synthsr
+<p align="center">
+  A synthetic 1 mm isotropic MP-RAGE T1-weighted image from clinical or low-field T1w, T2w or FLAIR scans, with FreeSurfer 7.3.2 SynthSR.
+</p>
+
+<p align="center">
+  <a href="https://github.com/brainlife/abcd-spec"><img src="https://img.shields.io/badge/ABCD_Spec-v1.1-green.svg" alt="ABCD Spec v1.1"></a>
+  <a href="https://doi.org/10.25663/brainlife.app.705"><img src="https://img.shields.io/badge/Brainlife-brainlife.app.705-blue.svg" alt="Run on brainlife.io"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
+</p>
+
+## 🧠 At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
-**Synthesises a 1 mm isotropic MP-RAGE-like T1-weighted image from paired low-field (Hyperfine) T1w and T2w scans with FreeSurfer 7.3.2 SynthSR Hyperfine.**
+> **Synthesises a 1 mm isotropic MP-RAGE-like T1-weighted image from paired low-field (Hyperfine) T1w and T2w scans with FreeSurfer 7.3.2 SynthSR Hyperfine.**
 
 Runs mri_synthsr_hyperfine on a T1-weighted and a T2-weighted scan of the same subject to produce a synthetic 1 mm MP-RAGE T1w volume. Use it for portable low-field (Hyperfine) acquisitions before T1w-based processing. The output is synthetic and should not be used for quantitative intensity analyses.
 
-Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.705](https://doi.org/10.25663/brainlife.app.705)
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` |
+| 📤 **Outputs** | `neuro/anat/t1w` |
+| 🐳 **Container** | `brainlife/freesurfer:7.3.2` |
+| ⚙️ **Resources** | 4 CPUs · 1 h walltime |
+| 🔑 **Requires** | `FREESURFER_LICENSE` |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.705](https://doi.org/10.25663/brainlife.app.705) |
+
+#### 📥 Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `t1` | `neuro/anat/t1w` | yes | Low-field T1-weighted image of the subject. |
 | `t2` | `neuro/anat/t2w` | yes | Low-field T2-weighted image of the same subject and session. |
 
+#### 📤 Outputs
+
 | Output | Datatype | Description |
 |---|---|---|
 | `output` | `neuro/anat/t1w` | Synthetic 1 mm isotropic MP-RAGE-like T1-weighted image. |
+
+<details>
+<summary><b>⚙️ Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `type` | string | `t1` | Base name checked for the output image file (<type>.nii.gz); the script always writes t1.nii.gz, so leave as t1. |
 
-Runtime: container `brainlife/freesurfer:7.3.2`; 4 CPUs; 1 h walltime; needs `FREESURFER_LICENSE`.
-
-Please cite:
-- Iglesias JE, Billot B, Balbastre Y, et al. Joint super-resolution and synthesis of 1mm isotropic MP-RAGE volumes from clinical MRI exams with scans of different orientation, resolution and contrast. NeuroImage 237, 118206 (2021). [doi:10.1016/j.neuroimage.2021.118206](https://doi.org/10.1016/j.neuroimage.2021.118206)
-- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+</details>
 
 <!-- brainlife-app:end -->
 
-This app will generate synthetic MP-RAGE images from clinical T1w, T2w, or FLAIR acquisitions using the SynthSR package (Iglesias et al, 2021) built into Freesurfer 7.3.2 (https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSR). This app takes in as input a clinical-grade T1w, T2w, or FLAIR sequence and will output a 1.0 mm^3 isotropic resolution MP-RAGE images that can then be used with common neuroimaging pipelines.
+## 🏷️ Versions on brainlife.io
 
-### Authors
-- Brad Caron (bacaron@iu.edu)
+This repository hosts four Apps, one for each kind of input scan.
 
-### Contributors
-- Franco Pestilli (frakkopesto@gmail.com)
+| App | Input | Branch | Run it | Status |
+|---|---|---|---|---|
+| Generate synthetic MP-RAGE T1 image from T1w and T2w data using SynthSR Hyperfine | low-field T1w + T2w | [`hyperfine-v1.0`](https://github.com/brainlife/app-synthsr/tree/hyperfine-v1.0) | [doi:10.25663/brainlife.app.705](https://doi.org/10.25663/brainlife.app.705) | current |
+| Generate synthetic MP-RAGE T1 image from T1w data | T1w | [`v1.0`](https://github.com/brainlife/app-synthsr/tree/v1.0) | [doi:10.25663/brainlife.app.692](https://doi.org/10.25663/brainlife.app.692) | current |
+| Generate synthetic MP-RAGE T1 image from T2w data | T2w | [`v1.0`](https://github.com/brainlife/app-synthsr/tree/v1.0) | [doi:10.25663/brainlife.app.693](https://doi.org/10.25663/brainlife.app.693) | current |
+| Generate synthetic MP-RAGE T1 image from clinical FLAIR data | FLAIR | [`v1.0`](https://github.com/brainlife/app-synthsr/tree/v1.0) | [doi:10.25663/brainlife.app.694](https://doi.org/10.25663/brainlife.app.694) | current |
 
-### Funding 
-[![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1734853)
-[![NSF-BCS-1636893](https://img.shields.io/badge/NSF_BCS-1636893-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1636893)
-[![NSF-ACI-1916518](https://img.shields.io/badge/NSF_ACI-1916518-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1916518)
-[![NSF-IIS-1912270](https://img.shields.io/badge/NSF_IIS-1912270-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1912270)
-[![NIH-NIBIB-R01EB029272](https://img.shields.io/badge/NIH_NIBIB-R01EB029272-green.svg)](https://grantome.com/grant/NIH/R01-EB029272-01)
+## 🔬 How it works
 
+[SynthSR](https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSR) (Iglesias et al., 2021), built into FreeSurfer 7.3.2, turns a clinical-grade scan of any resolution, orientation and contrast into a 1 mm isotropic MP-RAGE-like T1-weighted volume that common neuroimaging pipelines (FreeSurfer, segmentation Apps, …) can use.
 
-### References
+- The `v1.0` Apps run `mri_synthsr` on a single T1w, T2w or FLAIR image.
+- The Hyperfine App runs `mri_synthsr_hyperfine` on a T1w and a T2w scan of the same subject and session from a portable low-field (Hyperfine) scanner.
 
-Juan Eugenio Iglesias, Benjamin Billot, Yaël Balbastre, Azadeh Tabari, John Conklin, R. Gilberto González, Daniel C. Alexander, Polina Golland, Brian L. Edlow, Bruce Fischl, Joint super-resolution and synthesis of 1mm isotropic MP-RAGE volumes from clinical MRI exams with scans of different orientation, resolution and contrast, NeuroImage, Volume 237, 2021, 118206, ISSN 1053-8119, https://doi.org/10.1016/j.neuroimage.2021.118206.
+The output is a synthetic image, not a measurement: do not use it for quantitative intensity analyses.
 
-Avesani, P., McPherson, B., Hayashi, S. et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). https://doi.org/10.1038/s41597-019-0073-y
+## 🚀 Running the App
 
-## Running the App 
+### ☁️ On brainlife.io
 
-### On Brainlife.io
+Open the App that matches your data (see the table above), choose the input image(s) from your project and press **Execute**. The synthetic image is archived to your project as a `neuro/anat/t1w` dataset tagged `synthetic_mprage` and `mri_synthsr`. Leave the `type` parameter at `t1`.
 
-You can submit this App online at [https://doi.org/10.25663/brainlife.app.379](https://doi.org/10.25663/bl.app.) via the "Execute" tab.
+### 💻 Locally
 
-### Running Locally (on your machine)
+You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.github.io/jq/) and a [FreeSurfer license](https://surfer.nmr.mgh.harvard.edu/registration.html). `main` runs `synthsr.sh` inside the `brainlife/freesurfer:7.3.2` container.
 
-1. git clone this repo.
-2. Inside the cloned directory, create `config.json` with something like the following content with paths to your input files.
+1. Clone this repository and check out the branch of the App you want: `git checkout hyperfine-v1.0` or `git checkout v1.0`.
+2. Create `config.json` with the paths to your inputs. For the Hyperfine App:
 
-```json
-{
-        "input": "./input/t1/t1.nii.gz",
-        "TYPE": "t1"
-}
-```
+   ```json
+   {
+       "t1": "/input/t1/t1.nii.gz",
+       "t2": "/input/t2/t2.nii.gz",
+       "type": "t1"
+   }
+   ```
 
-### Sample Datasets
+   For the single-image Apps (`v1.0`), give one image under `input`:
 
-You can download sample datasets from Brainlife using [Brainlife CLI](https://github.com/brain-life/cli).
+   ```json
+   {
+       "input": "/input/t1/t1.nii.gz",
+       "type": "t1"
+   }
+   ```
 
-```
+3. Export your FreeSurfer license and run the App:
+
+   ```bash
+   export FREESURFER_LICENSE="$(cat ~/freesurfer/license.txt)"
+   ./main
+   ```
+
+### 🧪 Sample data
+
+Download a sample T1w image from brainlife.io with the [brainlife CLI](https://github.com/brainlife/cli):
+
+```bash
 npm install -g brainlife
 bl login
 mkdir input
 bl dataset download --id 5b96bbf2059cf900271924f3 && mv 5b96bbf2059cf900271924f3 input/
-
 ```
 
+## 📦 Outputs
 
-3. Launch the App by executing `main`
-
-```bash
-./main
+```text
+output/
+└── t1.nii.gz    synthetic 1 mm isotropic MP-RAGE-like T1w image
 ```
 
-## Output
+## 🩺 Troubleshooting
 
-The main output of this app is a neuro/anat/t1w datatype.
+- **`something went wrong. check logs`**: SynthSR did not write the output image. Check the log for `mri_synthsr` errors.
+- **`Please set FREESURFER_LICENSE in .bashrc`**: provide a FreeSurfer license in the `FREESURFER_LICENSE` environment variable.
 
-#### Product.json
-The secondary output of this app is `product.json`. This file allows web interfaces, DB and API calls on the results of the processing. 
+## 📚 Citing
 
-### Dependencies
+> [!TIP]
+> If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
 
-This App requires the following libraries when run locally.
+- Iglesias JE, Billot B, Balbastre Y, Tabari A, Conklin J, González RG, Alexander DC, Golland P, Edlow BL, Fischl B. Joint super-resolution and synthesis of 1 mm isotropic MP-RAGE volumes from clinical MRI exams with scans of different orientation, resolution and contrast. *NeuroImage* 237:118206 (2021). [doi:10.1016/j.neuroimage.2021.118206](https://doi.org/10.1016/j.neuroimage.2021.118206)
+- Generate synthetic MP-RAGE T1 image from T1w and T2w data using SynthSR Hyperfine. brainlife.io App. [doi:10.25663/brainlife.app.705](https://doi.org/10.25663/brainlife.app.705)
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+- Fischl. FreeSurfer. *NeuroImage* 62:774-781 (2012). [doi:10.1016/j.neuroimage.2012.01.021](https://doi.org/10.1016/j.neuroimage.2012.01.021)
+- Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 
-  - singularity: https://singularity.lbl.gov/
-  - Freesurfer: https://hub.docker.com/r/brainlife/freesurfer/tags/7.3.2
-  - jsonlab: https://github.com/fangq/jsonlab.git
+## 👥 Authors
+
+- Franco Pestilli (project director)
+- Brad Caron
+
+## 💰 Funding
+
+[![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
+[![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
+[![NIH-NINDS-UM1NS132207](https://img.shields.io/badge/NIH_NINDS-UM1NS132207-green.svg)](https://reporter.nih.gov/project-details/11411328)
+[![NIH-NIBIB-R01EB029272](https://img.shields.io/badge/NIH_NIBIB-R01EB029272-green.svg)](https://reporter.nih.gov/project-details/10262925)
+[![NIH-NIBIB-R01EB030896](https://img.shields.io/badge/NIH_NIBIB-R01EB030896-green.svg)](https://reporter.nih.gov/project-details/10428625)
+[![NIH-NIMH-R01MH126699](https://img.shields.io/badge/NIH_NIMH-R01MH126699-green.svg)](https://reporter.nih.gov/project-details/10460628)
+[![NIH-NIDCD-R01DC020088](https://img.shields.io/badge/NIH_NIDCD-R01DC020088-green.svg)](https://reporter.nih.gov/project-details/11140284)
+[![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1734853)
+[![NSF-BCS-2203524](https://img.shields.io/badge/NSF_BCS-2203524-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2203524)
+[![NSF-IIS-1636893](https://img.shields.io/badge/NSF_IIS-1636893-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1636893)
+[![NSF-OAC-2148729](https://img.shields.io/badge/NSF_OAC-2148729-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2148729)
+[![NSF-IIS-1912270](https://img.shields.io/badge/NSF_IIS-1912270-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1912270)
+[![NSF-IIS-2148700](https://img.shields.io/badge/NSF_IIS-2148700-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2148700)
+[![NSF-OAC-1916518](https://img.shields.io/badge/NSF_OAC-1916518-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1916518)
+
+<sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
+
+## ⚖️ License
+
+This repository does not include a license file. FreeSurfer and SynthSR are distributed under the FreeSurfer [license](https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferSoftwareLicense).
