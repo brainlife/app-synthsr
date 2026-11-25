@@ -2,6 +2,36 @@
 [![Run on Brainlife.io](https://img.shields.io/badge/Brainlife-brainlife.app.379-blue.svg)](https://doi.org/10.25663/brainlife.app.)
 
 # app-synthsr
+
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Synthesises a 1 mm isotropic MP-RAGE-like T1-weighted image from paired low-field (Hyperfine) T1w and T2w scans with FreeSurfer 7.3.2 SynthSR Hyperfine.**
+
+Runs mri_synthsr_hyperfine on a T1-weighted and a T2-weighted scan of the same subject to produce a synthetic 1 mm MP-RAGE T1w volume. Use it for portable low-field (Hyperfine) acquisitions before T1w-based processing. The output is synthetic and should not be used for quantitative intensity analyses.
+
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.705](https://doi.org/10.25663/brainlife.app.705)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `t1` | `neuro/anat/t1w` | yes | Low-field T1-weighted image of the subject. |
+| `t2` | `neuro/anat/t2w` | yes | Low-field T2-weighted image of the same subject and session. |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `output` | `neuro/anat/t1w` | Synthetic 1 mm isotropic MP-RAGE-like T1-weighted image. |
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `type` | string | `t1` | Base name checked for the output image file (<type>.nii.gz); the script always writes t1.nii.gz, so leave as t1. |
+
+Runtime: container `brainlife/freesurfer:7.3.2`; 4 CPUs; 1 h walltime; needs `FREESURFER_LICENSE`.
+
+Please cite:
+- Iglesias JE, Billot B, Balbastre Y, et al. Joint super-resolution and synthesis of 1mm isotropic MP-RAGE volumes from clinical MRI exams with scans of different orientation, resolution and contrast. NeuroImage 237, 118206 (2021). [doi:10.1016/j.neuroimage.2021.118206](https://doi.org/10.1016/j.neuroimage.2021.118206)
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+
+<!-- brainlife-app:end -->
+
 This app will generate synthetic MP-RAGE images from clinical T1w, T2w, or FLAIR acquisitions using the SynthSR package (Iglesias et al, 2021) built into Freesurfer 7.3.2 (https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSR). This app takes in as input a clinical-grade T1w, T2w, or FLAIR sequence and will output a 1.0 mm^3 isotropic resolution MP-RAGE images that can then be used with common neuroimaging pipelines.
 
 ### Authors
